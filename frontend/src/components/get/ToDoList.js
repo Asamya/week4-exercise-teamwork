@@ -1,19 +1,8 @@
 import React, {useEffect, useState} from "react";
 import axios from 'axios';
 
-export default function ToDoList({sendData}){
+export default function ToDoList({toDoList}){
 
-    const url = "/api/todo";
-    const [toDoList, setToDoList] = useState([]);
-
-
-
-    useEffect(() => {
-        axios.get(url)
-            .then(response => response.data)
-            .then(data => setToDoList(data)) //also .then(setToDoList)
-            .catch(error => console.log(error))
-    }, [sendData]);
 
     return <div>
         <ul>

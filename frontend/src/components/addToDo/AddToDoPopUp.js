@@ -4,21 +4,9 @@ import 'reactjs-popup/dist/index.css';
 import axios from 'axios';
 
 
-export default function AddToDoPopUp() {
+export default function AddToDoPopUp({onSubmit}) {
 
-    const url = "/api/todo";
     const [description, setDescription] = useState('');
-
-    function sendData() {
-        return axios.post(url, {
-            description,
-            status: 'OPEN'
-        }).then(response =>
-            console.log(response))
-            .catch(error =>
-                console.log(error))
-            }
-
 
     return <Popup trigger={<button>New task</button>} position="right center">
         <div>
@@ -31,7 +19,7 @@ export default function AddToDoPopUp() {
                 </label>
                 <input type="text" name="description" onChange={event => setDescription(event.target.value)}/>
             </form>
-            <button onClick={sendData}>
+            <button onClick={()=> onSubmit(description)}>
                 Send
             </button>
         </div>
